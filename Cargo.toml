@@ -28,6 +28,3 @@ lto = true
 codegen-units = 1
 panic = 'abort'
 strip = true
-
-[target.x86_64-pc-windows-msvc]
-rustflags = ["-C", "target-cpu=native", "-Z", "trap-unreachable=no", "-C", "no-vectorize-loops", "-C", "target-feature=+crt-static"]
