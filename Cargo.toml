@@ -1,0 +1,33 @@
+[package]
+name = "lidlock"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = "0.4"
+windows = { version = "0.48", features = [
+    "Win32_Foundation",
+    "Win32_System_Power",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_System_Console",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading",
+    "Win32_Graphics_Gdi",
+    "Win32_System_SystemServices",
+    "Win32_System_RemoteDesktop",
+    "Win32_Security",
+    "Win32_System_Shutdown",
+    "Win32_System_Services",
+    "Win32_Devices_Display",
+    "implement"
+]}
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = 'abort'
+strip = true
+
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-cpu=native", "-Z", "trap-unreachable=no", "-C", "no-vectorize-loops", "-C", "target-feature=+crt-static"]
